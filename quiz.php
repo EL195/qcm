@@ -309,7 +309,22 @@ if($q19=='s'){
 else{
 	$c=$c+1;
 }
-
+$maxi = max($c,$i,$d,$s);
+if ($maxi==$c){
+	echo 'c';
+}
+if ($maxi==$d){
+	echo 'd';
+}
+if ($maxi==$i){
+	echo 'i';
+}
+if ($maxi==$s){
+	echo 's';
+}
+else{
+	echo 'sss';
+}
 
 
 ?>
