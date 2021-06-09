@@ -48,10 +48,8 @@ else
 
 <body>
 <div id="banner">
-<span style="text-align:center;display: block;padding-top: 23px;" class="head">MIEUX CONNAÎTRE LA
-PERSONNALITÉ DE NOS
-ENFANTS POUR UNE MEILLEUR
-ORIENTATION</span><br />
+<span style="font-size:26px;text-align:center;display: block;padding-top: 23px;" class="head">MIEUX CONNAÎTRE LA
+PERSONNALITÉ DE NOS ENFANTS POUR UNE MEILLEUR ORIENTATION</span><br />
 </div>
 <br />
 <div align="center">

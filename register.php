@@ -12,15 +12,29 @@ if($name==NULL || $email==NULL || $sem==NULL || $branch==NULL || $sid==NULL || $
 }
 else
 {
-	$sql=mysqli_query($set,"INSERT INTO students(sid,name,branch,sem,password,email) VALUES('$sid','$name','$branch','$sem','$pas','$email')");
-	if($sql)
-	{
-		$msg="Compte créé avec succès, Veuillez vous connecter maintenant";
+	$a=mysqli_query($set,"SELECT * FROM students WHERE email='$email'");
+	$b=mysqli_fetch_array($a);
+	$ema=$b['email'];
+	if($ema==$email){
+		$msg="Cet email existe deja";
 	}
 	else
 	{
-		$msg="L'utilisateur est déjà inscris";
+		$sql=mysqli_query($set,"INSERT INTO students(sid,name,branch,sem,password,email) VALUES('$sid','$name','$branch','$sem','$pas','$email')");
+		if($sql)
+		{
+			$code = 'Beyourself_'.rand(5, 15000000);
+			$sqls=mysqli_query($set,"INSERT INTO codes(user,code,status) VALUES('$email','$code',0)");
+			if($sqls){
+			$msg="Compte créé avec succès, Veuillez vous connecter maintenant";
+			}
+		}
+		else
+		{
+			$msg="L'utilisateur est déjà inscris";
+		}	
 	}
+
 }
 ?>
 <!DOCTYPE html>
@@ -33,7 +47,7 @@ else
 
 <body>
 <div id="banner">
-<span style="text-align:center;display: block;padding-top: 23px;" class="head">MIEUX CONNAÎTRE LA
+<span style="font-size:26px;text-align:center;display: block;padding-top: 23px;" class="head">MIEUX CONNAÎTRE LA
 PERSONNALITÉ DE NOS
 ENFANTS POUR UNE MEILLEUR
 ORIENTATION</span><br />
@@ -53,7 +67,7 @@ Pour enfants, adolescents et adultes.</span><br>
 <form method="post" action="">
 <table border="0" cellpadding="4" cellspacing="4" class="table">
 <span class="SubHead">Inscription</span>
-<tr><td colspan="2" align="center" class="msg"><?php echo $msg;?></td></tr>
+<tr><td colspan="2" align="center" class="msg"><a href='index.php'><?php echo $msg;?></a></td></tr>
 <tr><td class="labels">Nom : </td><td><input type="text" name="name" class="fields" placeholder="Entrer le nom complet" required="required" size="25" /></td></tr>
 <tr><td class="labels">Email du parent : </td><td><input type="email" name="email" class="fields" placeholder="Entrer l'Email " required="required" size="25" /></td></tr>
 <tr><td class="labels">Age : </td>

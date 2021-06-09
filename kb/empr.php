@@ -10,6 +10,11 @@ $sid=$_SESSION['sid'];
 $a=mysqli_query($set,"SELECT * FROM students WHERE sid='$sid'");
 $b=mysqli_fetch_array($a);
 $name=$b['name'];
+$email=$b['email'];
+$aa=mysqli_query($set,"SELECT * FROM codes WHERE user='$email' and status=0");
+$bb=mysqli_fetch_array($aa);
+$code=$bb['code'];
+$status=$bb['status'];
 
 ?>
 
@@ -153,7 +158,7 @@ $name=$b['name'];
       <div class="container-fluid" id="header">
           <div class="row">
               <div class="col-md-3 col-lg-3" id="offer">
-                  <a href="../quiz.php">              <img class="img-responsive center-block" src="img/carousel/start.jpg"></a>
+                  <a href="../codein.php">              <img class="img-responsive center-block" src="img/carousel/start.jpg"></a>
               </div>
               <div class="col-md-6 col-lg-6">
                   <div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel">
@@ -188,7 +193,12 @@ $name=$b['name'];
               <div class="col-md-3 col-lg-3" id="category">
                   <div style="background:#D67B22;color:#fff;font-weight:800;border:none;padding:15px;"> Espace code </div>
                   <ul>
-                      <li>  Votre code :   </li>
+                      <li>  Votre code : <?php if($status==0) {
+echo $code.': A utilser'; 
+}else{
+echo $code.': Deja utilse';
+}
+?> </li>
                       <li>  NB: Ce code est valable une seule fois  </li>
                       <li> <a href="../ask_code.php"> Demandez un autre code </a> </li>
 
